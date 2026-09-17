@@ -8,6 +8,7 @@
 		./modules/zathura.nix
 		./modules/yazi.nix
 		./modules/fzf.nix
+		./modules/neovim.nix
 	];
 
 	home.stateVersion = "24.05";
