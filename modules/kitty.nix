@@ -12,6 +12,16 @@ let
 			--set LD_LIBRARY_PATH "${pkgs.mesa}/lib:${pkgs.libglvnd}/lib"
 		'';
 	};
+	picom = pkgs.symlinkJoin {
+		name = "picom-wrapped";
+		paths = [ pkgs.picom ];
+
+		nativeBuildInputs = [ pkgs.makeWrapper ];
+		postBuild = ''
+			wrapProgram $out/bin/picom \
+				--set LD_LIBRARY_PATH "${pkgs.mesa}/lib:${pkgs.libglvnd}/lib"
+			'';
+	};
 in 
 ##
 {
@@ -27,8 +37,11 @@ in
 		settings = {
 			confirm_os_window_close = 0;
 			enable_audio_bell = false;
+			background_opacity = 0.8;
 			shell = "bash";
+			kitty_mod = "alt+shift";
 		};
-
 	};
+	
+	home.packages = [ picom ];
 }
