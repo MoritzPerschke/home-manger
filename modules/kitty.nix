@@ -44,4 +44,8 @@ in
 	};
 	
 	home.packages = [ picom ];
+
+	programs.bash.shellAliases = {
+		ssh = "kitten ssh";
+	};
 }
