@@ -9,5 +9,9 @@
 			window-title-basename = true;
 			adjust-open = "best-fit";
 		};
+
+		mappings = {
+			"i" = "recolor";
+		};
 	};
 }
