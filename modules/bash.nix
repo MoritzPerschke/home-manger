@@ -30,4 +30,6 @@
 		fi
 	'';
 
+	home.sessionPath = [ "$HOME/.cargo/bin" ];
+
 }
