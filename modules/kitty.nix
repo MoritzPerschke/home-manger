@@ -3,7 +3,7 @@
 ## Workaround for outdated Ubuntu station
 let
   kitty = pkgs.symlinkJoin {
-	name = "kitty-wrapped";
+	name = "kitty";
 	paths = [ pkgs.kitty ];
 
 	nativeBuildInputs = [ pkgs.makeWrapper ];
@@ -41,6 +41,11 @@ in
 			shell = "bash";
 			kitty_mod = "alt+shift";
 		};
+
+		extraConfig = ''
+		# DMS theme, only present on machines where DMS is installed
+		globinclude dank-*.conf
+		'';
 	};
 	
 	home.packages = [ picom ];
