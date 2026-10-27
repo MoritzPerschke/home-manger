@@ -16,18 +16,19 @@
 	};
 
 	home.activation.cloneBashConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-		repo="$HOME/.config/bash"
-		bin="$HOME/.nix-profile/bin"
+	repo="$HOME/.config/bash"
 
-		if [[ ! -d "$repo/.git" ]]; then
-			${pkgs.git}/bin/git clone \
-				https://github.com/MoritzPerschke/bash-stuff.git \
-				"$repo"
-		fi
-		
-		if [[ -f $repo/clang-format ]]; then
-			ln -sf "$repo/clang-format" "$HOME/.clang-format"
-		fi
+	if [[ ! -d "$repo/.git" ]]; then
+		run ${pkgs.git}/bin/git clone \
+		https://github.com/MoritzPerschke/bash-stuff.git "$repo" \
+		|| echo "warning: failed to clone bash config" >&2
+		run ${pkgs.git}/bin/git -C "$repo" remote set-url origin \
+		git@github.com:MoritzPerschke/bash-stuff.git || true
+	fi
+
+	if [[ -f "$repo/clang-format" ]]; then
+		run ln -sf "$repo/clang-format" "$HOME/.clang-format"
+	fi
 	'';
 
 	home.sessionPath = [ "$HOME/.cargo/bin" ];
