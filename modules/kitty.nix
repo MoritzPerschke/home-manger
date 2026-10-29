@@ -31,7 +31,7 @@ in
 
 		font = {
 			name = "BlexMono Nerd Font";
-			size = 12;
+			size = 14;
 		};
 		
 		settings = {
