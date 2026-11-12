@@ -1,7 +1,7 @@
 { lib, pkgs, ... }:
 
 {
-  home.packages = [ pkgs.neovim ];
+  home.packages = [ pkgs.neovim pkgs.tree-sitter pkgs.gcc ];
 
   home.activation.cloneNeovimConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     repo="$HOME/.config/nvim"
